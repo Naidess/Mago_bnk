@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, Arial;
+}
+
+/* Professional financial palette - navy, deep blue, teal and subtle gold */
+:root{
+    --bg-start: #071426; /* very dark navy */
+    --bg-mid:   #0b3350; /* deep navy */
+    --bg-end:   #0f4a6b; /* slate blue */
+    --accent-teal: #0ea5a4; /* teal */
+    --accent-gold: #c9a34a; /* muted gold */
+    --card-bg: rgba(255,255,255,0.96);
+    --muted: #6b7280;
+    --glass: rgba(255,255,255,0.06);
+    --soft-shadow: 0 8px 30px rgba(3,7,18,0.45);
+}
+
+.app-gradient-bg {
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--soft-shadow);
+}
+
+.glass { background: var(--glass); backdrop-filter: blur(6px); border-radius: 10px; }
+.accent-teal { color: var(--accent-teal); }
+.accent-gold { color: var(--accent-gold); }
+.muted { color: var(--muted); }
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-teal), #0b86a0);
+    color: white;
+    border-radius: 10px;
+    padding: 0.6rem 1.1rem;
+    font-weight: 600;
+}
+
+.btn-gold {
+    background: linear-gradient(90deg, var(--accent-gold), #b78f3f);
+    color: #071426;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+}
+
+/* Hero typography */
+.hero-title{ font-size: 1.5rem; font-weight: 700; color: #fff; }
+.hero-sub{ color: rgba(255,255,255,0.9); }
+
+@media (min-width: 768px){
+    .hero-title{ font-size: 2rem; }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "mago_bnk_frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "@vitejs/plugin-react": "^5.1.1",
+    "axios": "^1.12.2",
+    "framer-motion": "^12.23.25",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.14.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "vite": "^7.2.6"
+  }
+}
