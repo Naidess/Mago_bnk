@@ -1,6 +1,6 @@
 // src/pages/HomePage.jsx
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../src/api/axiosInstance";
 import { motion } from "framer-motion";
 import { 
     FaCreditCard, FaWallet, FaMoneyCheckAlt, FaCoins, FaCog, 
@@ -18,10 +18,7 @@ export default function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const token = localStorage.getItem("access_token");
-            const res = await axios.get("http://localhost:3000/api/user/dashboard", {
-            headers: { Authorization: `Bearer ${token}` },
-            });
+            const res = await axiosInstance.get("/user/dashboard");
 
             setUser(res.data.user);
             setMagys(res.data.magys);
@@ -42,7 +39,7 @@ export default function HomePage() {
 
     const handleLogout = async () => {
         try {
-            await axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true });
+            await axiosInstance.post("/auth/logout");
             localStorage.removeItem("access_token");
             window.location.href = "/login";
         } catch (err) {

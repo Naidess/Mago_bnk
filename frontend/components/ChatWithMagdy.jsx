@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCommentDots } from "react-icons/fa";
-import axios from "axios";
+import axiosInstance from "../src/api/axiosInstance";
 
 export default function ChatWithMagdy() {
     const [openChat, setOpenChat] = useState(false);
@@ -34,14 +34,9 @@ export default function ChatWithMagdy() {
         setIsBotTyping(true);
 
         try {
-            const token = localStorage.getItem("access_token");
-            const res = await axios.post(
-                "http://localhost:3000/api/chat/message",
-                { message: userMsg.text },
-                { 
-                    headers: { Authorization: `Bearer ${token}` },
-                    withCredentials: true 
-                }
+            const res = await axiosInstance.post(
+                "/chat/message",
+                { message: userMsg.text }
             );
 
             const reply = res.data?.reply || "Lo siento, no pude procesar tu mensaje.";
