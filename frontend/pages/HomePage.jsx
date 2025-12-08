@@ -2,7 +2,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { FaCreditCard, FaWallet, FaMoneyCheckAlt, FaCoins, FaCog, FaCommentDots, FaHome, FaSignOutAlt } from "react-icons/fa";
+import { 
+    FaCreditCard, FaWallet, FaMoneyCheckAlt, FaCoins, FaCog, 
+    FaCommentDots, FaHome, FaSignOutAlt 
+} from "react-icons/fa";
+import ChatWithMagdy from "../components/ChatWithMagdy";
 
 export default function HomePage() {
     const [user, setUser] = useState(null);
@@ -43,7 +47,6 @@ export default function HomePage() {
             window.location.href = "/login";
         } catch (err) {
             console.error("Error al cerrar sesión", err);
-            // aún así limpia el token y redirige
             localStorage.removeItem("access_token");
             window.location.href = "/login";
         }
@@ -68,12 +71,11 @@ export default function HomePage() {
         <nav className="flex flex-col gap-4 text-gray-300">
             <SidebarItem href="/home" icon={<FaHome />} label="Dashboard" />
             <SidebarItem href="/magys" icon={<FaCoins />} label="Operaciones Magys" />
-            <SidebarItem href="/chat" icon={<FaCommentDots />} label="Chat con Magdy" />
             <SidebarItem href="/settings" icon={<FaCog />} label="Configuración" />
         </nav>
         </aside>
 
-        {/* Main: nuevo color */}
+        {/* Main */}
         <main className="flex-1 p-8 space-y-12 overflow-y-auto bg-[#F3F6FA] text-gray-900">
 
         {/* Header */}
@@ -154,6 +156,9 @@ export default function HomePage() {
         </section>
 
         </main>
+
+        {/* Chat flotante con Magdy */}
+        <ChatWithMagdy />
     </div>
     );
 }
