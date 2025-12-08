@@ -4,7 +4,7 @@ import axiosInstance from "../src/api/axiosInstance";
 import { motion } from "framer-motion";
 import { 
     FaCreditCard, FaWallet, FaMoneyCheckAlt, FaCoins, FaCog, 
-    FaCommentDots, FaHome, FaSignOutAlt 
+    FaCommentDots, FaHome, FaSignOutAlt, FaPlus, FaShoppingCart 
 } from "react-icons/fa";
 import ChatWithMagdy from "../components/ChatWithMagdy";
 import MagoLogo from "../components/MagoLogo";
@@ -15,6 +15,7 @@ export default function HomePage() {
     const [magys, setMagys] = useState(0);
     const [accounts, setAccounts] = useState([]);
     const [products, setProducts] = useState([]);
+    const [solicitudesPendientes, setSolicitudesPendientes] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -22,10 +23,15 @@ export default function HomePage() {
         try {
             const res = await axiosInstance.get("/user/dashboard");
 
+            console.log("Dashboard response:", res.data);
+            console.log("Accounts:", res.data.accounts);
+            console.log("Solicitudes pendientes:", res.data.solicitudesPendientes);
+
             setUser(res.data.user);
             setMagys(res.data.magys);
             setAccounts(res.data.accounts);
             setProducts(res.data.products);
+            setSolicitudesPendientes(res.data.solicitudesPendientes || []);
         } catch (error) {
             console.error("Error al cargar dashboard", error);
         } finally {
@@ -80,6 +86,7 @@ export default function HomePage() {
 
         <nav className="flex flex-col gap-4 text-gray-300">
             <SidebarItem href="/home" icon={<FaHome />} label="Dashboard" />
+            <SidebarItem href="/solicitar-productos" icon={<FaShoppingCart />} label="Solicitar Productos" />
             <SidebarItem href="/magys" icon={<FaCoins />} label="Operaciones Magys" />
             <SidebarItem href="/settings" icon={<FaCog />} label="Configuración" />
         </nav>
@@ -114,56 +121,116 @@ export default function HomePage() {
             </div>
         </header>
 
+        {/* Solicitudes Pendientes - Solo mostrar si hay solicitudes */}
+        {solicitudesPendientes.length > 0 && (
+            <section>
+                <SectionTitle title="Solicitudes Pendientes" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {solicitudesPendientes.map((solicitud) => (
+                    <motion.div
+                    key={solicitud.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-amber-50 border-2 border-amber-300 p-6 rounded-xl shadow-md"
+                    >
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="bg-amber-500 p-2 rounded-lg">
+                            <FaWallet className="text-white text-xl" />
+                        </div>
+                        <div>
+                            <p className="text-lg font-semibold text-gray-900">{solicitud.nombreProducto}</p>
+                            <p className="text-sm text-amber-700">En evaluación</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white/50 rounded-lg p-3 space-y-2">
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Número de cuenta:</span>
+                            <span className="font-semibold text-gray-900">{solicitud.numeroCuenta}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Fecha de solicitud:</span>
+                            <span className="font-semibold text-gray-900">
+                                {new Date(solicitud.fechaSolicitud).toLocaleDateString('es-ES')}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="mt-4 bg-amber-100 border border-amber-300 rounded-lg p-3 flex items-center gap-2">
+                        <span className="text-2xl">⏳</span>
+                        <div>
+                            <p className="text-xs font-semibold text-amber-900">Estado: En proceso</p>
+                            <p className="text-xs text-amber-700">Te notificaremos cuando sea aprobada</p>
+                        </div>
+                    </div>
+                    </motion.div>
+                ))}
+                </div>
+            </section>
+        )}
+
         {/* Cuentas */}
         <section>
             <SectionTitle title="Cuentas" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {accounts.map((acc) => (
-                <motion.div
-                key={acc.id}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white p-6 rounded-xl shadow-md border border-gray-200"
-                >
-                <p className="text-gray-600 text-sm">Número de cuenta</p>
-                <p className="text-gray-900 font-semibold text-lg">{acc.number}</p>
+            {accounts.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {accounts.map((acc) => (
+                    <motion.div
+                    key={acc.id}
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white p-6 rounded-xl shadow-md border border-gray-200"
+                    >
+                    <p className="text-gray-600 text-sm">Número de cuenta</p>
+                    <p className="text-gray-900 font-semibold text-lg">{acc.number}</p>
 
-                <p className="text-gray-600 text-sm mt-3">Saldo disponible</p>
-                <p className="text-3xl font-bold text-teal-600 mt-1">
-                    ${acc.balance.toFixed(2)}
-                </p>
-                </motion.div>
-            ))}
-            </div>
+                    <p className="text-gray-600 text-sm mt-3">Saldo disponible</p>
+                    <p className="text-3xl font-bold text-teal-600 mt-1">
+                        ${acc.balance.toFixed(2)}
+                    </p>
+                    </motion.div>
+                ))}
+                </div>
+            ) : (
+                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+                    <p className="text-gray-600">No tienes cuentas activas aún.</p>
+                    <a href="/solicitar-productos" className="text-teal-600 hover:text-teal-700 font-semibold mt-2 inline-block">
+                        Solicitar una cuenta →
+                    </a>
+                </div>
+            )}
         </section>
 
         {/* Productos */}
-        <section>
-            <SectionTitle title="Otros Productos" />
+        {products.length > 0 && (
+            <section>
+                <SectionTitle title="Otros Productos" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {products.map((prod) => (
-                <motion.div
-                key={prod.id}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white p-5 rounded-xl shadow-md border border-gray-200"
-                >
-                <div className="flex items-center gap-3">
-                    {iconMap[prod.name] || <FaWallet className="text-gray-400" />}
-                    <p className="text-lg font-semibold text-gray-900">{prod.name}</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {products.map((prod) => (
+                    <motion.div
+                    key={prod.id}
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white p-5 rounded-xl shadow-md border border-gray-200"
+                    >
+                    <div className="flex items-center gap-3">
+                        {iconMap[prod.name] || <FaWallet className="text-gray-400" />}
+                        <p className="text-lg font-semibold text-gray-900">{prod.name}</p>
+                    </div>
+
+                    <p className="text-gray-600 text-sm mt-2">{prod.status}</p>
+
+                    {prod.balance !== undefined && (
+                        <p className="text-xl font-bold text-teal-600 mt-3">
+                        ${prod.balance.toFixed(2)}
+                        </p>
+                    )}
+                    </motion.div>
+                ))}
                 </div>
-
-                <p className="text-gray-600 text-sm mt-2">{prod.status}</p>
-
-                {prod.balance !== undefined && (
-                    <p className="text-xl font-bold text-teal-600 mt-3">
-                    ${prod.balance.toFixed(2)}
-                    </p>
-                )}
-                </motion.div>
-            ))}
-            </div>
-        </section>
+            </section>
+        )}
 
         </main>
 

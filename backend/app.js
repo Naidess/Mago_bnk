@@ -10,6 +10,8 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
 const magysRoutes = require("./routes/magys");
 const chatRoutes = require("./routes/chat");
+const cuentaCorrienteRoutes = require("./routes/cuentaCorriente");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -52,6 +54,8 @@ app.use(cors({ origin: originOption, credentials: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/magys", magysRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/cuenta-corriente", cuentaCorrienteRoutes);
+app.use("/api/user", userRoutes);
 
 // Basic health
 app.get("/health", (req, res) => res.json({ ok: true, env: process.env.NODE_ENV || "dev" }));
