@@ -81,7 +81,7 @@ export default function ChatWithMagdy() {
                                    flex flex-col border border-gray-200 z-50"
                     >
                         <div className="bg-blue-600 text-white px-4 py-3 font-semibold rounded-t-xl">
-                            Chat con Magdy ✨
+                            Chat con Magdy
                         </div>
 
                         {/* Mensajes */}
