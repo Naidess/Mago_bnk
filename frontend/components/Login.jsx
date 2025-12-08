@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../src/api/axiosInstance";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -18,10 +18,9 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const res = await axios.post(
-                "http://localhost:3000/api/auth/login",
-                { email, password },
-                { withCredentials: true }
+            const res = await axiosInstance.post(
+                "/auth/login",
+                { email, password }
             );
 
             // Guardamos access token (refresh token se envía en cookie HttpOnly)
@@ -71,7 +70,7 @@ export default function Login() {
         setForgotLink(null);
         setForgotLoading(true);
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/forgot-password", { email: forgotEmail });
+            const res = await axiosInstance.post("/auth/forgot-password", { email: forgotEmail });
             setForgotMsg(res.data?.message || "Si el email existe, recibirás instrucciones.");
             if (res.data?.resetUrl) setForgotLink(res.data.resetUrl);
         } catch (err) {

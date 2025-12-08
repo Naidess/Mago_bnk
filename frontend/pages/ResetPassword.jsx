@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../src/api/axiosInstance";
 
 export default function ResetPassword(){
     const [searchParams] = useSearchParams();
@@ -25,7 +25,7 @@ export default function ResetPassword(){
         if(password !== confirm){ setMsg("Las contraseñas no coinciden"); return; }
         setLoading(true);
         try{
-            const res = await axios.post("http://localhost:3000/api/auth/reset-password", { token, id, password });
+            const res = await axiosInstance.post("/auth/reset-password", { token, id, password });
             setMsg(res.data?.message || "Contraseña actualizada");
             // redirect to login after short delay
             setTimeout(()=> navigate('/login'), 1500);

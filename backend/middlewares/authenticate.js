@@ -20,7 +20,8 @@ module.exports = function (req, res, next) {
     jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, decoded) => {
         if (err) {
             console.log('[auth middleware] Token verification failed:', err.message);
-            return res.status(401).json({ error: "Token inválido o expirado" });
+            // Retornar 401 para que el frontend intente renovar
+            return res.status(401).json({ error: "Token inválido o expirado", code: err.name === 'TokenExpiredError' ? 'TOKEN_EXPIRED' : 'INVALID_TOKEN' });
         }
         console.log('[auth middleware] Token valid for user:', decoded.id);
         req.user = { id: decoded.id, email: decoded.email };
