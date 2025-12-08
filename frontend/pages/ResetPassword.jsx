@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../src/api/axiosInstance";
+import MagoLogo from "../components/MagoLogo";
 
 export default function ResetPassword(){
     const [searchParams] = useSearchParams();
@@ -37,7 +38,10 @@ export default function ResetPassword(){
     return (
         <div className="min-h-screen flex items-center justify-center app-gradient-bg p-6">
             <div className="w-full max-w-md card p-8">
-                <h2 className="text-2xl font-semibold mb-4">Restablecer contraseña</h2>
+                <div className="flex justify-center mb-4">
+                    <MagoLogo size={90} variant="dark" />
+                </div>
+                <h2 className="text-2xl font-semibold text-gray-900 text-center mb-4">Restablecer contraseña</h2>
                 <form onSubmit={handleReset} className="space-y-4">
                     <div>
                         <label className="block text-sm font-semibold muted mb-1">Nueva contraseña</label>

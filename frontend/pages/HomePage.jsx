@@ -7,6 +7,8 @@ import {
     FaCommentDots, FaHome, FaSignOutAlt 
 } from "react-icons/fa";
 import ChatWithMagdy from "../components/ChatWithMagdy";
+import MagoLogo from "../components/MagoLogo";
+import MagysIcon from "../components/MagysIcon";
 
 export default function HomePage() {
     const [user, setUser] = useState(null);
@@ -57,13 +59,24 @@ export default function HomePage() {
     };
 
     return (
-    <div className="min-h-screen flex bg-[#0B1D39] text-white">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-[#0B1D39] text-white">
+
+        {/* Mobile Navbar */}
+        <nav className="lg:hidden bg-[#0F223F] border-b border-white/10 p-4 flex items-center justify-between">
+            <a href="/home" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+                <MagoLogo size={50} variant="light" />
+                <h1 className="text-xl font-bold text-white">Mago Bank</h1>
+            </a>
+        </nav>
 
         {/* Sidebar */}
         <aside className="w-64 hidden lg:flex flex-col p-8 border-r border-white/10 bg-[#0F223F]">
-        <h1 className="text-2xl font-bold text-white tracking-wide mb-10">
-            Mago Bank
-        </h1>
+        <a href="/home" className="flex items-center gap-3 mb-10 cursor-default">
+            <MagoLogo size={55} variant="light" />
+            <h1 className="text-2xl font-bold text-white tracking-wide">
+                Mago Bank
+            </h1>
+        </a>
 
         <nav className="flex flex-col gap-4 text-gray-300">
             <SidebarItem href="/home" icon={<FaHome />} label="Dashboard" />
@@ -88,7 +101,7 @@ export default function HomePage() {
 
             <div className="flex items-center gap-4">
                 <div className="bg-white px-5 py-3 rounded-xl flex items-center gap-3 shadow-lg border border-gray-200">
-                <FaCoins className="text-yellow-500 text-3xl" />
+                <MagysIcon size= {56} variant="dark" />
                 <div className="text-right">
                     <span className="text-sm text-gray-500">Tus Magys</span>
                     <p className="text-xl font-bold text-gray-800">{magys}</p>
