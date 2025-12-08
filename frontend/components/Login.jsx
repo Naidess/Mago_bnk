@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axiosInstance from "../src/api/axiosInstance";
+import MagoLogo from "./MagoLogo";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -86,7 +87,10 @@ export default function Login() {
         
             {/* Header */}
             <div className="text-center mb-6">
-                <h1 className="text-3xl font-bold" style={{color: 'var(--bg-mid)'}}>Mago Bank</h1>
+                <div className="flex justify-center mb-4">
+                    <MagoLogo size={100} variant="dark" />
+                </div>
+                <h1 className="text-3xl font-bold text-gray-900">Mago Bank</h1>
                 <p className="muted mt-1">Accedé a tu banca digital</p>
             </div>
 
@@ -139,7 +143,7 @@ export default function Login() {
                 <button
                     type="button"
                     onClick={() => { setShowForgot(true); setForgotMsg(""); setForgotLink(null); }}
-                    className="text-sm text-indigo-600 hover:text-indigo-800"
+                    className="text-sm text-indigo-600 hover:text-indigo-800 cursor-pointer"
                 >
                     ¿Olvidaste tu contraseña?
                 </button>
