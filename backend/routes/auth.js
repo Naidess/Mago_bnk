@@ -3,7 +3,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const rateLimit = require("express-rate-limit");
 const router = express.Router();
-const authController = require("../controllers/authController");
+const authController = require("../controllers/authcontroller");
 
 // stricter rate limit for auth actions to mitigate brute force
 const authLimiter = rateLimit({
