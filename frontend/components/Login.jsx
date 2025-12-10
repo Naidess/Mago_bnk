@@ -148,6 +148,19 @@ export default function Login() {
                     ¿Olvidaste tu contraseña?
                 </button>
             </div>
+
+            <div className="mt-4 text-center border-t pt-4">
+                <p className="text-sm text-gray-600">
+                    ¿No tienes cuenta?{" "}
+                    <a
+                        href="/register"
+                        className="text-teal-600 hover:text-teal-700 font-semibold"
+                    >
+                        Regístrate aquí
+                    </a>
+                </p>
+            </div>
+
             {showForgot && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                     <div className="absolute inset-0 bg-black/50" onClick={() => setShowForgot(false)} />
