@@ -29,6 +29,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+combined.log
+error.log
+access.log
+application.log
+server.log
+# Keep test logs out
+/backend/tests/*.log
+/frontend/tests/*.log
 
 # OS Files
 .DS_Store

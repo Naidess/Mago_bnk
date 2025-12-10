@@ -66,3 +66,36 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 - [ ] CORS configurado correctamente
 - [ ] Validación de inputs activa
 - [ ] Logs de autenticación habilitados
+- [ ] Logs no exponen datos sensibles
+
+## 🔍 Logging Seguro
+
+### ⚠️ NUNCA loguear:
+```javascript
+// ❌ MAL - Expone contraseñas
+console.log('Login attempt:', req.body);
+
+// ❌ MAL - Expone tokens
+console.log('Token:', accessToken);
+
+// ❌ MAL - Expone API keys
+console.log('API Key:', process.env.GEMINI_API_KEY);
+```
+
+### ✅ Logging seguro:
+```javascript
+// ✅ BIEN - Solo confirma existencia
+console.log('API Key configured:', !!process.env.GEMINI_API_KEY);
+
+// ✅ BIEN - Solo email, no password
+console.log('Login attempt for:', email);
+
+// ✅ BIEN - IDs, no datos sensibles
+console.log('User authenticated:', userId);
+```
+
+### Archivos de log
+- Los archivos `*.log` están en `.gitignore`
+- No commitees logs de producción
+- Usa herramientas como winston para logging estructurado
+- En producción, envía logs a servicios seguros (no archivos locales)
