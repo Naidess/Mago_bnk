@@ -21,14 +21,17 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    - `DATABASE_URL`: Tu conexión PostgreSQL
    - `JWT_ACCESS_SECRET`: Secret único para tokens de acceso
    - `JWT_REFRESH_SECRET`: Secret único para tokens de refresh
+   - `GEMINI_API_KEY`: Tu API key de Google Gemini AI
 
 ## ⚠️ Importante
 
 ### NO commitear:
 - ❌ `.env` (contiene datos reales)
 - ❌ Contraseñas en texto plano
-- ❌ API keys de servicios externos
+- ❌ API keys (Gemini, OpenAI, etc.)
+- ❌ Tokens de servicios externos
 - ❌ Certificados privados (`.key`, `.pem`)
+- ❌ Credenciales de SMTP/Email
 
 ### SÍ commitear:
 - ✅ `.env.example` (plantilla sin datos sensibles)
