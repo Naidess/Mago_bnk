@@ -24,15 +24,16 @@ export default function TragamonedasPage() {
 
     const cargarDatos = async () => {
         try {
-            const [saldosRes, simbolosRes, historialRes] = await Promise.all([
+            const [saldosRes, ticketsRes, simbolosRes, historialRes] = await Promise.all([
                 axiosInstance.get("/user/dashboard"),
+                axiosInstance.get("/juegos/tickets"),
                 axiosInstance.get("/juegos/1/simbolos"),
                 axiosInstance.get("/juegos/historial?limite=10")
             ]);
 
             setSaldos({
                 magys: saldosRes.data.magys || 0,
-                tickets: saldosRes.data.tickets?.saldo || 0
+                tickets: ticketsRes.data.saldo || 0
             });
             setSimbolos(simbolosRes.data.simbolos || []);
             setHistorial(historialRes.data.historial || []);

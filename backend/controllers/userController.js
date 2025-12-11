@@ -17,13 +17,23 @@ exports.getDashboard = async (req, res) => {
 
         const user = userResult.rows[0];
 
-        // Obtener saldo de Magys
-        const magysResult = await pool.query(
+        // Obtener saldo de Magys - Si no existe, crear el registro
+        let magysResult = await pool.query(
             "SELECT saldo FROM magys WHERE usuario_id = $1",
             [usuarioId]
         );
 
-        const magys = magysResult.rows.length > 0 ? magysResult.rows[0].saldo : 0;
+        let magys = 0;
+        if (magysResult.rows.length > 0) {
+            magys = magysResult.rows[0].saldo;
+        } else {
+            // Crear registro de Magys si no existe
+            await pool.query(
+                "INSERT INTO magys (usuario_id, saldo) VALUES ($1, 0)",
+                [usuarioId]
+            );
+            magys = 0;
+        }
 
         // Obtener cuentas corrientes (accounts) - solo las aprobadas
         const accountsResult = await pool.query(
@@ -82,6 +92,11 @@ exports.getDashboard = async (req, res) => {
 
     } catch (error) {
         console.error("Error al obtener dashboard:", error);
-        res.status(500).json({ error: "Error al cargar el dashboard" });
+        console.error("Error stack:", error.stack);
+        console.error("Error message:", error.message);
+        res.status(500).json({ 
+            error: "Error al cargar el dashboard",
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     }
 };

@@ -19,15 +19,16 @@ export default function JuegosMagysPage() {
 
     const cargarDatos = async () => {
         try {
-            const [juegosRes, saldosRes] = await Promise.all([
+            const [juegosRes, saldosRes, ticketsRes] = await Promise.all([
                 axiosInstance.get("/juegos"),
-                axiosInstance.get("/user/dashboard")
+                axiosInstance.get("/user/dashboard"),
+                axiosInstance.get("/juegos/tickets")
             ]);
 
             setJuegos(juegosRes.data.juegos || []);
             setSaldos({
                 magys: saldosRes.data.magys || 0,
-                tickets: saldosRes.data.tickets?.saldo || 0
+                tickets: ticketsRes.data.saldo || 0
             });
         } catch (error) {
             console.error("Error al cargar datos:", error);

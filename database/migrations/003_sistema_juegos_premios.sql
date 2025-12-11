@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS juegos_historial (
 -- Tabla de tickets (moneda del casino)
 CREATE TABLE IF NOT EXISTS tickets (
     id SERIAL PRIMARY KEY,
-    usuario_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE,
+    usuario_id INTEGER UNIQUE NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
     saldo INTEGER NOT NULL DEFAULT 0,
     total_ganado INTEGER NOT NULL DEFAULT 0, -- Histórico total
     total_canjeado INTEGER NOT NULL DEFAULT 0, -- Histórico canjeado
