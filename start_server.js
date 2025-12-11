@@ -1,10 +1,13 @@
 // start_server.js
 // Simple server starter for debugging
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, 'backend', '.env') });
 
 console.log('Starting server...');
 console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'set' : 'MISSING');
 console.log('JWT_ACCESS_SECRET:', process.env.JWT_ACCESS_SECRET ? 'set' : 'MISSING');
 console.log('JWT_REFRESH_SECRET:', process.env.JWT_REFRESH_SECRET ? 'set' : 'MISSING');
+console.log('GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? 'set' : 'MISSING');
 
 try {
     const app = require('./backend/app.js');

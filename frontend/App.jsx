@@ -4,6 +4,9 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import ResetPassword from "./pages/ResetPassword";
 import SolicitarProductos from "./pages/SolicitarProductos";
+import JuegosMagysPage from "./pages/JuegosMagysPage";
+import TragamonedasPage from "./pages/TragamonedasPage";
+import TiendaPremiosPage from "./pages/TiendaPremiosPage";
 
 function App() {
     return (
@@ -15,6 +18,9 @@ function App() {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/reset" element={<ResetPassword />} />
                 <Route path="/solicitar-productos" element={<SolicitarProductos />} />
+                <Route path="/juegos-magys" element={<JuegosMagysPage />} />
+                <Route path="/tragamonedas" element={<TragamonedasPage />} />
+                <Route path="/tienda-premios" element={<TiendaPremiosPage />} />
             </Routes>
         </BrowserRouter>
     );

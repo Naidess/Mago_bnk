@@ -12,6 +12,8 @@ const magysRoutes = require("./routes/magys");
 const chatRoutes = require("./routes/chat");
 const cuentaCorrienteRoutes = require("./routes/cuentaCorriente");
 const userRoutes = require("./routes/user");
+const juegosRoutes = require("./routes/juegos");
+const premiosRoutes = require("./routes/premios");
 
 const app = express();
 
@@ -56,6 +58,8 @@ app.use("/api/magys", magysRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/cuenta-corriente", cuentaCorrienteRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/juegos", juegosRoutes);
+app.use("/api/premios", premiosRoutes);
 
 // Basic health
 app.get("/health", (req, res) => res.json({ ok: true, env: process.env.NODE_ENV || "dev" }));

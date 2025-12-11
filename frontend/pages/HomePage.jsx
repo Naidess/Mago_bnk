@@ -4,7 +4,8 @@ import axiosInstance from "../src/api/axiosInstance";
 import { motion } from "framer-motion";
 import { 
     FaCreditCard, FaWallet, FaMoneyCheckAlt, FaCoins, FaCog, 
-    FaCommentDots, FaHome, FaSignOutAlt, FaPlus, FaShoppingCart 
+    FaCommentDots, FaHome, FaSignOutAlt, FaPlus, FaShoppingCart,
+    FaDice, FaGift
 } from "react-icons/fa";
 import ChatWithMagdy from "../components/ChatWithMagdy";
 import MagoLogo from "../components/MagoLogo";
@@ -87,7 +88,8 @@ export default function HomePage() {
         <nav className="flex flex-col gap-4 text-gray-300">
             <SidebarItem href="/home" icon={<FaHome />} label="Dashboard" />
             <SidebarItem href="/solicitar-productos" icon={<FaShoppingCart />} label="Solicitar Productos" />
-            <SidebarItem href="/magys" icon={<FaCoins />} label="Operaciones Magys" />
+            <SidebarItem href="/juegos-magys" icon={<FaDice />} label="Juegos Magys" />
+            <SidebarItem href="/tienda-premios" icon={<FaGift />} label="Tienda de Premios" />
             <SidebarItem href="/settings" icon={<FaCog />} label="Configuración" />
         </nav>
         </aside>
