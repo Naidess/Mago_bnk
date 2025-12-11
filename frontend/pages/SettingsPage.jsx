@@ -5,6 +5,7 @@ import axiosInstance from "../src/api/axiosInstance";
 import { motion } from "framer-motion";
 import { FaCog, FaKey, FaUser, FaArrowLeft, FaEnvelope, FaCheck, FaExclamationTriangle } from "react-icons/fa";
 import MagoLogo from "../components/MagoLogo";
+import ChatWithMagdy from "../components/ChatWithMagdy";
 
 export default function SettingsPage() {
     const navigate = useNavigate();
@@ -244,6 +245,7 @@ export default function SettingsPage() {
                     </ul>
                 </div>
             </div>
+            <ChatWithMagdy />
         </div>
     );
 }
