@@ -4,6 +4,7 @@ const { body } = require("express-validator");
 const rateLimit = require("express-rate-limit");
 const router = express.Router();
 const authController = require("../controllers/authcontroller");
+const authenticate = require("../middlewares/authenticate");
 
 // stricter rate limit for auth actions to mitigate brute force
 const authLimiter = rateLimit({
@@ -25,6 +26,10 @@ router.post("/login", authLimiter, [
 
 router.post("/refresh", authController.refreshToken);
 router.post("/logout", authController.logout);
+router.post("/change-password", authenticate, [
+    body("currentPassword").exists().withMessage("Contraseña actual requerida"),
+    body("newPassword").isLength({ min: 6 }).withMessage("La nueva contraseña debe tener al menos 6 caracteres")
+], authController.changePassword);
 router.post("/forgot-password", [ body("email").isEmail().withMessage("Email inválido") ], authController.forgotPassword);
 router.post("/reset-password", [ body("token").exists(), body("id").isInt().withMessage("id inválido"), body("password").isLength({ min: 8 }).withMessage("La contraseña debe tener al menos 8 caracteres") ], authController.resetPassword);
 

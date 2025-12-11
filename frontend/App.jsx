@@ -7,6 +7,7 @@ import SolicitarProductos from "./pages/SolicitarProductos";
 import JuegosMagysPage from "./pages/JuegosMagysPage";
 import TragamonedasPage from "./pages/TragamonedasPage";
 import TiendaPremiosPage from "./pages/TiendaPremiosPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/juegos-magys" element={<JuegosMagysPage />} />
                 <Route path="/tragamonedas" element={<TragamonedasPage />} />
                 <Route path="/tienda-premios" element={<TiendaPremiosPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
             </Routes>
         </BrowserRouter>
     );
