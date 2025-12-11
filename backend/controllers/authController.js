@@ -323,3 +323,70 @@ exports.resetPassword = async (req, res) => {
         res.status(500).json({ error: "Error del servidor" });
     }
 };
+
+/**
+ * Cambiar contraseña (usuario autenticado)
+ */
+exports.changePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        const usuarioId = req.user?.id;
+
+        if (!usuarioId) {
+            return res.status(401).json({ error: "No autenticado" });
+        }
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ error: "Se requiere contraseña actual y nueva" });
+        }
+
+        if (newPassword.length < 6) {
+            return res.status(400).json({ error: "La nueva contraseña debe tener al menos 6 caracteres" });
+        }
+
+        // Obtener usuario
+        const userResult = await pool.query(
+            "SELECT id, password_hash FROM usuarios WHERE id = $1",
+            [usuarioId]
+        );
+
+        if (userResult.rows.length === 0) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        const user = userResult.rows[0];
+
+        // Verificar contraseña actual
+        const validPassword = await bcrypt.compare(currentPassword, user.password_hash);
+        if (!validPassword) {
+            return res.status(401).json({ error: "Contraseña actual incorrecta" });
+        }
+
+        // Verificar que la nueva contraseña sea diferente
+        const sameAsOld = await bcrypt.compare(newPassword, user.password_hash);
+        if (sameAsOld) {
+            return res.status(400).json({ error: "La nueva contraseña debe ser diferente a la actual" });
+        }
+
+        // Actualizar contraseña
+        const newHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+        await pool.query(
+            "UPDATE usuarios SET password_hash = $1 WHERE id = $2",
+            [newHash, usuarioId]
+        );
+
+        // Revocar todos los refresh tokens (forzar re-login en otros dispositivos)
+        await pool.query(
+            "UPDATE refresh_tokens SET revoked = true, revoked_at = NOW() WHERE usuario_id = $1",
+            [usuarioId]
+        );
+
+        const ip = req.ip || req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+        await logAuth({ usuarioId, ip, action: "change_password", success: true });
+
+        return res.json({ message: "Contraseña actualizada correctamente. Por seguridad, deberás iniciar sesión nuevamente." });
+    } catch (err) {
+        console.error("Error en changePassword:", err);
+        res.status(500).json({ error: "Error del servidor" });
+    }
+};
