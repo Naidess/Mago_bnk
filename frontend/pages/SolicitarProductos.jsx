@@ -50,7 +50,7 @@ const PRODUCTOS_DISPONIBLES = [
         nombre: "Préstamo Personal",
         descripcion: "Conseguí el dinero que necesitás con tasas preferenciales y plazos flexibles.",
         beneficios: [
-            "Hasta Gs. 5.000.000",
+            "Hasta Gs. 50.000.000",
             "Plazos de 12 a 60 meses",
             "Pre-aprobación inmediata",
             "Acreditación en 24hs"
