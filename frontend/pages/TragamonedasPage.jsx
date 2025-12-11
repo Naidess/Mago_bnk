@@ -5,6 +5,7 @@ import axiosInstance from "../src/api/axiosInstance";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCoins, FaTicketAlt, FaHistory, FaTrophy, FaDice, FaArrowLeft } from "react-icons/fa";
 import MagoLogo from "../components/MagoLogo";
+import ChatWithMagdy from "../components/ChatWithMagdy";
 
 export default function TragamonedasPage() {
     const navigate = useNavigate();
@@ -305,6 +306,7 @@ export default function TragamonedasPage() {
                     </button>
                 </div>
             </div>
+            <ChatWithMagdy />
         </div>
     );
 }

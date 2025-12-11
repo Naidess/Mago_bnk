@@ -8,6 +8,7 @@ import {
     FaArrowLeft, FaCheckCircle, FaSpinner 
 } from "react-icons/fa";
 import MagoLogo from "../components/MagoLogo";
+import ChatWithMagdy from "../components/ChatWithMagdy";
 import MagysIcon from "../components/MagysIcon";
 
 // Catálogo de productos disponibles (escalable)
@@ -218,6 +219,7 @@ export default function SolicitarProductos() {
                 </motion.div>
 
             </main>
+            <ChatWithMagdy />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import axiosInstance from "../src/api/axiosInstance";
 import { motion } from "framer-motion";
 import { FaTicketAlt, FaGift, FaHistory, FaShoppingCart, FaArrowLeft } from "react-icons/fa";
 import MagoLogo from "../components/MagoLogo";
+import ChatWithMagdy from "../components/ChatWithMagdy";
 
 export default function TiendaPremiosPage() {
     const navigate = useNavigate();
@@ -286,6 +287,7 @@ export default function TiendaPremiosPage() {
                     )}
                 </div>
             </div>
+            <ChatWithMagdy />
         </div>
     );
 }
