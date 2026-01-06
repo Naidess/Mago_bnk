@@ -1,4 +1,4 @@
-# 🏦 Mago Bank
+# Mago Bank
 
 Sistema bancario digital con gamificación integrada. Permite a los usuarios gestionar cuentas corrientes, acumular puntos Magys, jugar en un casino virtual y canjear premios.
 
@@ -7,7 +7,7 @@ Sistema bancario digital con gamificación integrada. Permite a los usuarios ges
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue)
 ![License](https://img.shields.io/badge/license-ISC-green)
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Características](#-características)
 - [Tecnologías Utilizadas](#-tecnologías-utilizadas)
@@ -22,26 +22,26 @@ Sistema bancario digital con gamificación integrada. Permite a los usuarios ges
 - [Seguridad](#-seguridad)
 - [Contribución](#-contribución)
 
-## ✨ Características
+## Características
 
 ### Sistema Bancario
-- 🏦 **Cuentas Corrientes**: Apertura y gestión de cuentas bancarias
-- 💰 **Sistema de Aprobación**: Flujo de solicitud y aprobación de productos
-- 📊 **Dashboard Personalizado**: Vista general de productos y saldo
+- **Cuentas Corrientes**: Apertura y gestión de cuentas bancarias
+- **Sistema de Aprobación**: Flujo de solicitud y aprobación de productos
+- **Dashboard Personalizado**: Vista general de productos y saldo
 
 ### Sistema de Gamificación
-- 🎁 **Magys (Puntos de Recompensa)**: Acumula puntos por contratar productos
-- 🎰 **Casino Virtual**: Juegos de azar (Tragamonedas)
-- 🎟️ **Tickets**: Moneda del casino para canjear premios
-- 🛍️ **Tienda de Premios**: Catálogo de recompensas canjeables
+- **Magys (Puntos de Recompensa)**: Acumula puntos por contratar productos
+- **Casino Virtual**: Juegos de azar (Tragamonedas)
+- **Tickets**: Moneda del casino para canjear premios
+- **Tienda de Premios**: Catálogo de recompensas canjeables
 
 ### Funcionalidades Adicionales
-- 💬 **Chat con Magdy**: Asistente virtual inteligente con IA (Google Gemini)
-- 🔐 **Autenticación Segura**: JWT con refresh tokens
-- 🔒 **Seguridad Avanzada**: Rate limiting, bcrypt, helmet
-- 📱 **Responsive Design**: Interfaz adaptable a todos los dispositivos
+- **Chat con Magdy**: Asistente virtual inteligente con IA (Google Gemini)
+- **Autenticación Segura**: JWT con refresh tokens
+- **Seguridad Avanzada**: Rate limiting, bcrypt, helmet
+- **Responsive Design**: Interfaz adaptable a todos los dispositivos
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Backend
 - **Node.js** v18+ - Entorno de ejecución JavaScript
@@ -68,7 +68,7 @@ Sistema bancario digital con gamificación integrada. Permite a los usuarios ges
 - **PostgreSQL** v14+
 - **pg** v8.13.0 - Cliente PostgreSQL para Node.js
 
-## 📦 Requisitos Previos
+## Requisitos Previos
 
 Asegúrate de tener instalado:
 
@@ -77,7 +77,7 @@ Asegúrate de tener instalado:
 - **npm** o **yarn** (viene con Node.js)
 - **Git** ([Descargar](https://git-scm.com/))
 
-## 🚀 Instalación
+## Instalación
 
 ### 1. Clonar el repositorio
 
@@ -168,7 +168,7 @@ node scripts/reset_database.js
 
 Esto creará todas las tablas necesarias y datos iniciales.
 
-## 🎮 Ejecución
+## Ejecución
 
 ### Desarrollo (Modo Dev)
 
@@ -202,7 +202,7 @@ npm run build
 npm run preview
 ```
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Mago_bnk/
@@ -274,7 +274,7 @@ Mago_bnk/
 └── README.md
 ```
 
-## 🌐 API Endpoints
+## API Endpoints
 
 ### Autenticación
 ```
@@ -326,7 +326,7 @@ POST   /api/chat/message         # Enviar mensaje al chatbot Magdy
 GET    /api/chat/history         # Obtener historial de conversación
 ```
 
-## 📜 Scripts Disponibles
+## Scripts Disponibles
 
 ### Backend
 
@@ -363,7 +363,7 @@ npm run build
 npm run preview
 ```
 
-## 🗄️ Base de Datos
+## Base de Datos
 
 ### Tablas Principales
 
@@ -400,7 +400,7 @@ premios
   └── canjes (1:N)
 ```
 
-## 🔐 Seguridad
+## Seguridad
 
 El proyecto implementa múltiples capas de seguridad:
 
@@ -421,7 +421,7 @@ El proyecto implementa múltiples capas de seguridad:
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ```
 
-## 🎯 Funcionalidades Destacadas
+## Funcionalidades Destacadas
 
 ### Sistema de Tragamonedas
 
@@ -445,30 +445,3 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 - Sistema de seguimiento de envíos
 - Historial completo de canjes
 
-## 🤝 Contribución
-
-Las contribuciones son bienvenidas. Para contribuir:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia ISC.
-
-## 👥 Autores
-
-- **Naidess** - [GitHub](https://github.com/Naidess)
-
-## 🙏 Agradecimientos
-
-- Google Gemini AI por la integración de IA
-- La comunidad de React y Node.js
-- Todos los contribuidores del proyecto
-
----
-
-**Desarrollado con ❤️ por el equipo de Mago Bank**
