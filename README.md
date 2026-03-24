@@ -5,7 +5,6 @@ Sistema bancario digital con gamificación integrada. Permite a los usuarios ges
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue)
-![License](https://img.shields.io/badge/license-ISC-green)
 
 ## Tabla de Contenidos
 
